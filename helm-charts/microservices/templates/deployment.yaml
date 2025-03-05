@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName}}
+spec:
+  replicas: {{ .Values.appReplicas}}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName}}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName}}
+    spec:
+      containers:
+        - name: {{ .Values.appName}}
+          image: "gcr.io/google-samples/microservices-demo/{{ .Values.appName}}service:{{ .Values.imageVersion}}"
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+          env:
+          {{- range  .Values.containerEnv}}
+            - name: {{.name}}
+              value: {{.value | quote}}
+          {{- end}}
+
+          {{- if eq  .Values.probeType "grpc"}}
+          livenessProbe:
+            grpc:
+              port: {{  .Values.containerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            grpc:
+              port: {{  .Values.containerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          {{- else}}
+          livenessProbe:
+            httpGet:
+              path: /_healthz
+              port: {{  .Values.containerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /_healthz
+              port: {{  .Values.containerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          {{- end}}
+
+          resources:
+            requests:
+              memory: {{ .Values.requestedMemory | quote}}
+              cpu: {{ .Values.requestedCPU | quote}}
+            limits:
+              memory: {{ .Values.memoryLimit | quote}}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName}}
+spec:
+  type: {{ .Values.serviceType}}
+  selector:
+    app: {{ .Values.appName}}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.servicePort}}
+      targetPort: {{ .Values.containerPort}}

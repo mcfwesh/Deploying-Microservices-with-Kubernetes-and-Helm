@@ -1,0 +1,26 @@
+appName: frontend
+containerPort: 8080
+containerEnv:
+  - name: PORT
+    value: "8080"
+  - name: PRODUCT_CATALOG_SERVICE_ADDR
+    value: "productcatalog:3550"
+  - name: CURRENCY_SERVICE_ADDR
+    value: "currency:7000"
+  - name: CART_SERVICE_ADDR
+    value: "cart:7070"
+  - name: RECOMMENDATION_SERVICE_ADDR
+    value: "recommendation:8080"
+  - name: SHIPPING_SERVICE_ADDR
+    value: "shipping:50051"
+  - name: CHECKOUT_SERVICE_ADDR
+    value: "checkout:5050"
+  - name: AD_SERVICE_ADDR
+    value: "ad:9555"
+  - name: SHOPPING_ASSISTANT_SERVICE_ADDR
+    value: "shoppingassistantservice:80"
+  - name: ENABLE_PROFILER
+    value: "0"
+serviceType: LoadBalancer
+servicePort: 3000
+probeType: "http"
