@@ -1,0 +1,55 @@
+releases:
+  - name: redisservice
+    chart: helm-charts/redis
+    values:
+      - appReplicas: "1"
+
+  - name: emailservice
+    chart: helm-charts/microservices
+    values:
+      - values/email-values.yaml
+
+  - name: cartservice
+    chart: helm-charts/microservices
+    values:
+      - values/cart-values.yaml
+
+  - name: currencyservice
+    chart: helm-charts/microservices
+    values:
+      - values/currency-values.yaml
+
+  - name: paymentservice
+    chart: helm-charts/microservices
+    values:
+      - values/payment-values.yaml
+
+  - name: recommendationservice
+    chart: helm-charts/microservices
+    values:
+      - values/recommendation-values.yaml
+
+  - name: productcatalogservice
+    chart: helm-charts/microservices
+    values:
+      - values/productcatalog-values.yaml
+
+  - name: shippingservice
+    chart: helm-charts/microservices
+    values:
+      - values/shipping-values.yaml
+
+  - name: adservice
+    chart: helm-charts/microservices
+    values:
+      - values/ad-values.yaml
+
+  - name: checkoutservice
+    chart: helm-charts/microservices
+    values:
+      - values/checkout-values.yaml
+
+  - name: frontendservice
+    chart: helm-charts/microservices
+    values:
+      - values/frontend-values.yaml
