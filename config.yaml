@@ -33,12 +33,6 @@ spec:
               port: 50051
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
@@ -91,10 +85,10 @@ spec:
             periodSeconds: 5
           resources:
             requests:
-              memory: "100Mi"
-              cpu: "100"
+              memory: 64Mi
+              cpu: 100m
             limits:
-              memory: "200Mi"
+              memory: 100Mi
 
 ---
 apiVersion: v1
@@ -144,12 +138,7 @@ spec:
               port: 7000
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
+
 ---
 apiVersion: v1
 kind: Service
@@ -198,12 +187,6 @@ spec:
               port: 50051
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
@@ -256,10 +239,10 @@ spec:
             periodSeconds: 5
           resources:
             requests:
-              memory: "200Mi"
-              cpu: "70"
+              memory: 90Mi
+              cpu: 50m
             limits:
-              memory: "300Mi"
+              memory: 120Mi
       volumes:
         - name: redis-volume
           emptyDir: {}
@@ -312,12 +295,6 @@ spec:
               port: 3550
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
@@ -365,12 +342,6 @@ spec:
               port: 9555
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
@@ -438,12 +409,6 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
@@ -504,12 +469,6 @@ spec:
               port: 5050
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
@@ -559,12 +518,6 @@ spec:
               port: 7070
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
@@ -614,12 +567,6 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 5
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "100"
-            limits:
-              memory: "200Mi"
 
 ---
 apiVersion: v1
