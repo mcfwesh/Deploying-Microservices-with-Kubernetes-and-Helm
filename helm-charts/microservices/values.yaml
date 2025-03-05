@@ -1,5 +1,6 @@
 appName: app-name
 appReplicas: 2
+imageName: image-name
 imageVersion: v0.8.0
 containerPort: 6666
 containerEnv:
@@ -8,6 +9,6 @@ containerEnv:
 probeType: "grpc"
 requestedMemory: "100Mi"
 requestedCPU: "100"
-memoryLimit: "200"
+memoryLimit: "200Mi"
 serviceType: ClusterIP
 servicePort: servicePort

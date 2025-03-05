@@ -1,0 +1,9 @@
+appName: cart
+imageName: cartservice
+containerPort: 7070
+containerEnv:
+  - name: PORT
+    value: "7070"
+  - name: REDIS_ADDR
+    value: "redis:6379"
+servicePort: 7070

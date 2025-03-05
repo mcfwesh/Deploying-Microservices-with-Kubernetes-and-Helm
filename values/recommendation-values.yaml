@@ -1,0 +1,9 @@
+appName: recommendation
+imageName: recommendationservice
+containerPort: 8080
+containerEnv:
+  - name: PORT
+    value: "8080"
+  - name: PRODUCT_CATALOG_SERVICE_ADDR
+    value: "productcatalog:3550"
+servicePort: 8080

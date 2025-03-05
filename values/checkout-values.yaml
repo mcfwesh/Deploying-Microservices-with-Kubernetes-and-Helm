@@ -1,0 +1,19 @@
+appName: checkout
+imageName: checkoutservice
+containerPort: 5050
+containerEnv:
+  - name: PORT
+    value: "5050"
+  - name: PRODUCT_CATALOG_SERVICE_ADDR
+    value: "productcatalog:3550"
+  - name: CART_SERVICE_ADDR
+    value: "cart:7070"
+  - name: SHIPPING_SERVICE_ADDR
+    value: "shipping:50051"
+  - name: CURRENCY_SERVICE_ADDR
+    value: "currency:7000"
+  - name: PAYMENT_SERVICE_ADDR
+    value: "payment:50051"
+  - name: EMAIL_SERVICE_ADDR
+    value: "email:5000"
+servicePort: 5050

@@ -1,78 +1,57 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "redis-chart.fullname" . }}
-  labels:
-    {{- include "redis-chart.labels" . | nindent 4 }}
+  name: {{.Values.appName}}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: {{.Values.appReplicas}}
   selector:
     matchLabels:
-      {{- include "redis-chart.selectorLabels" . | nindent 6 }}
+      app: {{.Values.appName}}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
-        {{- include "redis-chart.labels" . | nindent 8 }}
-        {{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
+        app: {{.Values.appName}}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "redis-chart.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
-      securityContext:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
-          {{- with .Values.securityContext }}
-          securityContext:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: {{.Values.appName}}
+          image: "{{ .Values.imageName}}:{{ .Values.imageVersion}}"
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
-          {{- with .Values.livenessProbe }}
-          livenessProbe:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.readinessProbe }}
-          readinessProbe:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.resources }}
-          resources:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.volumeMounts }}
+            - containerPort: {{.Values.containerPort}}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
+            - name: {{.Values.volumeName}}
+              mountPath: {{.Values.mountPath}}
+          env:
+            - name: PORT
+              value: {{.Values.containerPort | quote}}
+          livenessProbe:
+            tcpSocket:
+              port: {{.Values.containerPort}}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            tcpSocket:
+              port: {{.Values.containerPort}}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: {{.Values.requestedMemory | quote}}
+              cpu: {{.Values.requestedCPU | quote}}
+            limits:
+              memory: {{.Values.memoryLimit | quote}}
       volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        - name: {{.Values.volumeName}}
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.appName}}
+spec:
+  type: {{.Values.serviceType}}
+  selector:
+    app: {{.Values.appName}}
+  ports:
+    - protocol: TCP
+      port: {{.Values.servicePort}}
+      targetPort: {{.Values.containerPort}}

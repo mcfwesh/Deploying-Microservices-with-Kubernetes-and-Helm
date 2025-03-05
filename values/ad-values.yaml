@@ -1,0 +1,7 @@
+appName: ad
+imageName: adservice
+containerPort: 9555
+containerEnv:
+  - name: PORT
+    value: "9555"
+servicePort: 9555

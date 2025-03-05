@@ -1,0 +1,9 @@
+appName: currency
+imageName: currencyservice
+containerPort: 7000
+containerEnv:
+  - name: PORT
+    value: "7000"
+  - name: DISABLE_PROFILER
+    value: "1"
+servicePort: 7000

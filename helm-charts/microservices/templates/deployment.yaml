@@ -14,13 +14,13 @@ spec:
     spec:
       containers:
         - name: {{ .Values.appName}}
-          image: "gcr.io/google-samples/microservices-demo/{{ .Values.appName}}service:{{ .Values.imageVersion}}"
+          image: "gcr.io/google-samples/microservices-demo/{{ .Values.imageName}}:{{ .Values.imageVersion}}"
           ports:
             - containerPort: {{ .Values.containerPort }}
           env:
           {{- range  .Values.containerEnv}}
-            - name: {{.name}}
-              value: {{.value | quote}}
+          - name: {{ .name }}
+            value: {{.value | quote}}
           {{- end}}
 
           {{- if eq  .Values.probeType "grpc"}}

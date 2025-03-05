@@ -1,4 +1,5 @@
 appName: frontend
+imageName: frontend
 containerPort: 8080
 containerEnv:
   - name: PORT
