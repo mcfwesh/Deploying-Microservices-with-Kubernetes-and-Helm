@@ -1,4 +1,4 @@
-# Microservices Deployment with Kubernetes and Helm
+# Module 10a: Microservices Deployment with Kubernetes and Helm
 
 A hands-on learning project demonstrating the progression from basic Kubernetes deployments to Helm-based microservices orchestration, using Google's microservices demo application.
 
