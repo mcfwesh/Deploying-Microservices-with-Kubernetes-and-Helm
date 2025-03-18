@@ -3,9 +3,9 @@ appReplicas: 2
 imageName: redis
 imageVersion: alpine
 containerPort: 6379
-requestedMemory: "90Mi"
-requestedCPU: "50m"
-memoryLimit: "120Mi"
+requestedMemory: "40Mi"
+requestedCPU: "20m"
+memoryLimit: "50Mi"
 serviceType: ClusterIP
 servicePort: 6379
 mountPath: /data

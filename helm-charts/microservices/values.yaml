@@ -7,8 +7,8 @@ containerEnv:
   - name: envName
     value: "envValue"
 probeType: "grpc"
-requestedMemory: "64Mi"
-requestedCPU: "100m"
-memoryLimit: "120Mi"
+requestedMemory: "20Mi"
+requestedCPU: "20m"
+memoryLimit: "40Mi"
 serviceType: ClusterIP
 servicePort: servicePort
