@@ -15,6 +15,7 @@ spec:
       containers:
         - name: {{ .Values.appName}}
           image: "gcr.io/google-samples/microservices-demo/{{ .Values.imageName}}:{{ .Values.imageVersion}}"
+          imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.containerPort }}
           env:
