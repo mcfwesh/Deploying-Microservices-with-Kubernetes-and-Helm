@@ -1,6 +1,21 @@
-# Microservices Deployment Learning Project
+# Microservices Deployment with Kubernetes and Helm
 
 A hands-on learning project demonstrating the progression from basic Kubernetes deployments to Helm-based microservices orchestration, using Google's microservices demo application.
+
+## Related Tasks from Module 10
+
+- **Create Helm Chart for Microservices**
+
+  - Developed a Helm chart to manage microservices deployments
+  - Reused common configurations for services
+
+- **Deploy Microservices with Helmfile**
+
+  - Utilized Helmfile to manage and deploy multiple services efficiently
+
+- **Deploy Microservices with Production & Security Best Practices**
+  - Implemented security best practices for Kubernetes deployments
+  - Used DigitalOcean for the deployment environment
 
 ## Project Overview
 
@@ -56,6 +71,11 @@ This project documents the learning journey of deploying microservices using dif
 4. **Helmfile Integration**
 
    - Implemented Helmfile for orchestrating multiple Helm releases
+     - **Command:**
+       ```bash
+       helmfile apply
+       ```
+   - Streamlined deployment process
      - **Command:**
        ```bash
        helmfile sync
