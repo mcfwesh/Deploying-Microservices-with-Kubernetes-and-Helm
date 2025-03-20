@@ -2,18 +2,18 @@
 
 A hands-on learning project demonstrating the progression from basic Kubernetes deployments to Helm-based microservices orchestration, using Google's microservices demo application.
 
-## Related Tasks from Module 10
+## Related Demo Tasks from Module 10
 
-- **Create Helm Chart for Microservices**
+- **"Create Helm Chart for Microservices"**
 
   - Developed a Helm chart to manage microservices deployments
   - Reused common configurations for services
 
-- **Deploy Microservices with Helmfile**
+- **"Deploy Microservices with Helmfile"**
 
   - Utilized Helmfile to manage and deploy multiple services efficiently
 
-- **Deploy Microservices with Production & Security Best Practices**
+- **"Deploy Microservices with Production & Security Best Practices"**
   - Implemented security best practices for Kubernetes deployments
   - Used DigitalOcean for the deployment environment
 
