@@ -1,0 +1,7 @@
+releases: 
+  - name: xxxx
+    chart: xxxx
+    values: 
+      - xxxx.yaml
+      - appReplicas: "xxxx"
+      - volumeName: "xxxx"
